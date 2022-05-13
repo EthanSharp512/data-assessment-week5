@@ -234,7 +234,7 @@ module.exports = {
         sequelize.query(`
         select * from countries
         `)
-        .then(() => {
+        .then((dbRes) => {
             res.status(200).send(dbRes[0])
         })
         .catch(err => console.log(err))
@@ -247,9 +247,20 @@ module.exports = {
         insert into cities (name, rating, country_id)
         values ('${name}', ${rating}, ${country_id}),
         `)
-        .then(() => {
+        .then((dbRes) => {
             res.status(200).send(dbRes[0])
         })
         .catch(err => console.log(err))
-    }
+    },
+    getCities: (req, res) => {
+        sequelize.query(`
+        select * from cities as c
+        join countries as co on c.country_id=co.country_id;
+        `)
+        .then((dbRes) => {
+            res.status(200).send(dbRes[0])
+        })
+        .catch(err => console.log(err))
+    },
+    
 }
