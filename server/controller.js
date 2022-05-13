@@ -225,6 +225,11 @@ module.exports = {
             ('Yemen'),
             ('Zambia'),
             ('Zimbabwe');
+
+            insert into cities (name, rating, country_id)
+            values ('Cool City', 2, 20),
+            ('Epic City', 3, 21),
+            ('Swag City', 5, 22);
         `).then(() => {
             console.log('DB seeded!')
             res.sendStatus(200)
