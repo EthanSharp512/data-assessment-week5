@@ -232,7 +232,11 @@ module.exports = {
     },
     getCountries: (req, res) => {
         sequelize.query(`
-        
+        select * from countries
         `)
+        .then(() => {
+            res.status(200).send(dbRes[0])
+        })
+        .catch(err => console.log(err))
     }
 }
