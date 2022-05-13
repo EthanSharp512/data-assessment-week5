@@ -3,7 +3,7 @@ const {CONNECTION_STRING} = process.env
 const Sequelize = require('sequelize')
 
 const sequelize = new Sequelize(CONNECTION_STRING, {
-    dialect: 'postgres', 
+    dialect: 'postgres',
     dialectOptions: {
         ssl: {
             rejectUnauthorized: false
@@ -250,7 +250,7 @@ module.exports = {
 
         sequelize.query(`
         insert into cities (name, rating, country_id)
-        values ('${name}', ${rating}, ${country_id}),
+        values ('${name}', ${rating}, ${country_id});
         `)
         .then((dbRes) => {
             res.status(200).send(dbRes[0])
